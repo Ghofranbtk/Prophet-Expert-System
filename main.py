@@ -1,4 +1,4 @@
-from greetings import Greetings
+
 diseases_list = []
 diseases_symptoms = []
 symptom_map = {}
@@ -61,7 +61,7 @@ def if_not_matched(disease):
         "The common medications and procedures suggested by other real doctors are: \n"
     )
     print(treatments + "\n")
-
+from greetings import Greetings
 #driver function
 if __name__ == "__main__":
     preprocess()

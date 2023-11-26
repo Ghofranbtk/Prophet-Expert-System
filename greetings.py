@@ -1,6 +1,6 @@
 from experta import *
 
-class Greetings(KnowledgeEngine):
+class Greetings(KnowledgeEngine ):
 
     def __init__(self, symptom_map, if_not_matched, get_treatments, get_details):
         self.symptom_map = symptom_map
@@ -13,337 +13,380 @@ class Greetings(KnowledgeEngine):
     @DefFacts()
     def _initial_action(self):
         print("")
-        print("This is a knowledge based bot to diagnose diseases")
+        print("Dans ce programme on va deviner le prophète")
         print("")
-        print("Do you feel any of the following symptoms?")
-        print("Reply high or low or no")
         print("")
-        yield Fact(action="find_disease")
+        print("Répondez par oui ou non")
+        print("")
+        yield Fact(action="trouver_prophete")
 
     #taking various input from user
-    @Rule(Fact(action="find_disease"), NOT(Fact(headache=W())), salience=4)
+    @Rule(Fact(action="trouver_prophete"), NOT(Fact(Qs1=W())), salience=4)
     def symptom_0(self):
-        self.declare(Fact(headache=input("headache: ")))
+        self.declare(Fact(Qs1=input("Est-ce-que cette personne est montionné dans sourate Al-Baqara ?")))
 
-    @Rule(Fact(action="find_disease"), NOT(Fact(back_pain=W())), salience=1)
+    @Rule(Fact(action="trouver_prophete"), NOT(Fact(Qs2=W())), salience=1)
     def symptom_1(self):
-        self.declare(Fact(back_pain=input("back pain: ")))
+        self.declare(Fact(Qs2=input("Est-ce que cette personne est considérée comme le premier homme selon le Coran ?")))
 
-    @Rule(Fact(action="find_disease"), NOT(Fact(chest_pain=W())), salience=1)
+    @Rule(Fact(action="trouver_prophete"), NOT(Fact(Qs3=W())), salience=1)
     def symptom_2(self):
-        self.declare(Fact(chest_pain=input("chest pain: ")))
+        self.declare(Fact(Qs3=input("Est-ce-que cette personne a des liens avec la mer ou l'eau ?")))
 
-    @Rule(Fact(action="find_disease"), NOT(Fact(cough=W())), salience=3)
+    @Rule(Fact(action="trouver_prophete"), NOT(Fact(Qs4=W())), salience=3)
     def symptom_3(self):
-        self.declare(Fact(cough=input("cough: ")))
+        self.declare(Fact(Qs4=input("Est-ce que cette personne est considérée comme l un des cinq grands prophètes dans l Islam ?")))
 
-    @Rule(Fact(action="find_disease"), NOT(Fact(fainting=W())), salience=1)
+    @Rule(Fact(action="trouver_prophete"), NOT(Fact(Qs5=W())), salience=1)
     def symptom_4(self):
-        self.declare(Fact(fainting=input("fainting: ")))
+        self.declare(Fact(Qs5=input("Est-ce que cette personne a construit une arche pour sauver sa famille et les animaux du déluge ?")))
 
-    @Rule(Fact(action="find_disease"), NOT(Fact(fatigue=W())), salience=1)
+    @Rule(Fact(action="trouver_prophete"), NOT(Fact(Qs6=W())), salience=1)
     def symptom_5(self):
-        self.declare(Fact(fatigue=input("fatigue: ")))
+        self.declare(Fact(Qs6=input("Est-ce-que cette personne a des liens avec Makka ? ")))
 
-    @Rule(Fact(action="find_disease"), NOT(Fact(sunken_eyes=W())), salience=1)
+    @Rule(Fact(action="trouver_prophete"), NOT(Fact(Qs7=W())), salience=1)
     def symptom_6(self):
-        self.declare(Fact(sunken_eyes=input("sunken eyes: ")))
+        self.declare(Fact(Qs7=input("Est ce que cette personne a des liens avec la Palestine selon les textes religieux ?")))
 
-    @Rule(Fact(action="find_disease"), NOT(Fact(low_body_temp=W())), salience=1)
+    @Rule(Fact(action="trouver_prophete"), NOT(Fact(Qs8=W())), salience=1)
     def symptom_7(self):
-        self.declare(Fact(low_body_temp=input("low body temperature: ")))
+        self.declare(Fact(Qs8=input("Est-ce que cette personne a un lien avec la construction de la Kaaba à La Mecque ?")))
 
-    @Rule(Fact(action="find_disease"), NOT(Fact(restlessness=W())), salience=1)
+    @Rule(Fact(action="trouver_prophete"), NOT(Fact(Qs9=W())), salience=1)
     def symptom_8(self):
-        self.declare(Fact(restlessness=input("restlessness: ")))
+        self.declare(Fact(Qs9=input("Est-ce-que cette personne a des liens avec l'Egipte selon les textes religieux ?")))
 
-    @Rule(Fact(action="find_disease"), NOT(Fact(sore_throat=W())), salience=1)
+    @Rule(Fact(action="trouver_prophete"), NOT(Fact(Qs10=W())), salience=1)
     def symptom_9(self):
-        self.declare(Fact(sore_throat=input("sore throat: ")))
+        self.declare(Fact(Qs10=input("Est-ce que cette personne est associée à l histoire du rêve des sept vaches grasses et sept vaches maigres dans le Coran ?")))
 
-    @Rule(Fact(action="find_disease"), NOT(Fact(fever=W())), salience=1)
+    @Rule(Fact(action="trouver_prophete"), NOT(Fact(Qs11=W())), salience=1)
     def symptom_10(self):
-        self.declare(Fact(fever=input("fever: ")))
+        self.declare(Fact(Qs11=input("Est-ce que cette personne est devenue un conseiller important du roi d Égypte ?")))
 
-    @Rule(Fact(action="find_disease"), NOT(Fact(nausea=W())), salience=1)
+    @Rule(Fact(action="trouver_prophete"), NOT(Fact(Qs12=W())), salience=1)
     def symptom_11(self):
-        self.declare(Fact(nausea=input("nausea: ")))
+        self.declare(Fact(Qs12=input("Est-ce que cette personne a un lien avec l histoire du bâton qui se transforme en serpent dans le Coran ?")))
 
-    @Rule(Fact(action="find_disease"), NOT(Fact(blurred_vision=W())), salience=1)
+    @Rule(Fact(action="trouver_prophete"), NOT(Fact(Qs13=W())), salience=1)
     def symptom_12(self):
-        self.declare(Fact(blurred_vision=input("blurred_vision: ")))
+        self.declare(Fact(Qs13=input("Est-ce que cette personne a été trouvée dans un panier flottant sur le Nil dans son enfance ?")))
+
+    @Rule(Fact(action="trouver_prophete"), NOT(Fact(Qs14=W())), salience=1)
+    def symptom_13(self):
+        self.declare(Fact(Qs14=input("Est-ce que cette personne a passé trois jours et trois nuits dans le ventre d un grand poisson selon le Coran ?")))
+    
+    @Rule(Fact(action="trouver_prophete"), NOT(Fact(Qs15=W())), salience=1)
+    def symptom_14(self):
+        self.declare(Fact(Qs15=input("Est-ce que cette personne est souvent identifiée à Jonas dans la tradition biblique ?")))
+    @Rule(Fact(action="trouver_prophete"), NOT(Fact(Qs16=W())), salience=1)
+    def symptom_15(self):
+        self.declare(Fact(Qs16=input("Est-ce que cette personne est le dernier messager selon le Coran ?")))
+
+    @Rule(Fact(action="trouver_prophete"), NOT(Fact(Qs17=W())), salience=1)
+    def symptom_16(self):
+        self.declare(Fact(Qs17=input("Est-ce que cette personne est le fondateur de l islam ?")))
 
     #different rules checking for each disease match
     @Rule(
-        Fact(action="find_disease"),
-        Fact(headache="no"),
-        Fact(back_pain="no"),
-        Fact(chest_pain="no"),
-        Fact(cough="no"),
-        Fact(fainting="no"),
-        Fact(sore_throat="no"),
-        Fact(fatigue="high"),
-        Fact(restlessness="no"),
-        Fact(low_body_temp="no"),
-        Fact(fever="low"),
-        Fact(sunken_eyes="no"),
-        Fact(nausea="high"),
-        Fact(blurred_vision="no"),
+        Fact(action="trouver_prophete"),
+        Fact(Qs1="oui"),
+        Fact(Qs2="oui"),
+        Fact(Qs3="non"),
+        Fact(Qs4="non"),
+        Fact(Qs5="non"),
+        Fact(Qs6="non"),
+        Fact(Qs7="non"),
+        Fact(Qs8="non"),
+        Fact(Qs9="non"),
+        Fact(Qs10="non"),
+        Fact(Qs11="non"),
+        Fact(Qs12="non"),
+        Fact(Qs13="non"),
+        Fact(Qs14="non"),
+        Fact(Qs15="non"),
+        Fact(Qs16="non"),
+        Fact(Qs17="non"),
     )
     def disease_0(self):
-        self.declare(Fact(disease="Jaundice"))
+        self.declare(Fact(disease="Adam"))
 
     @Rule(
-        Fact(action="find_disease"),
-        Fact(headache="no"),
-        Fact(back_pain="no"),
-        Fact(chest_pain="no"),
-        Fact(cough="no"),
-        Fact(fainting="no"),
-        Fact(sore_throat="no"),
-        Fact(fatigue="no"),
-        Fact(restlessness="high"),
-        Fact(low_body_temp="no"),
-        Fact(fever="no"),
-        Fact(sunken_eyes="no"),
-        Fact(nausea="no"),
-        Fact(blurred_vision="no"),
+        Fact(action="trouver_prophete"),
+        Fact(Qs1="non"),
+        Fact(Qs2="non"),
+        Fact(Qs3="oui"),
+        Fact(Qs4="oui"),
+        Fact(Qs5="oui"),
+        Fact(Qs6="non"),
+        Fact(Qs7="non"),
+        Fact(Qs8="non"),
+        Fact(Qs9="non"),
+        Fact(Qs10="non"),
+        Fact(Qs11="non"),
+        Fact(Qs12="non"),
+        Fact(Qs13="non"),
+        Fact(Qs14="non"),
+        Fact(Qs15="non"),
+        Fact(Qs16="non"),
+        Fact(Qs17="non"),
     )
     def disease_1(self):
-        self.declare(Fact(disease="Alzheimers"))
+        self.declare(Fact(disease="Nouh"))
 
     @Rule(
-        Fact(action="find_disease"),
-        Fact(headache="no"),
-        Fact(back_pain="high"),
-        Fact(chest_pain="no"),
-        Fact(cough="no"),
-        Fact(fainting="no"),
-        Fact(sore_throat="no"),
-        Fact(fatigue="low"),
-        Fact(restlessness="no"),
-        Fact(low_body_temp="no"),
-        Fact(fever="no"),
-        Fact(sunken_eyes="no"),
-        Fact(nausea="no"),
-        Fact(blurred_vision="no"),
+        Fact(action="trouver_prophete"),
+        Fact(Qs1="oui"),
+        Fact(Qs2="non"),
+        Fact(Qs3="non"),
+        Fact(Qs4="oui"),
+        Fact(Qs5="non"),
+        Fact(Qs6="oui"),
+        Fact(Qs7="oui"),
+        Fact(Qs8="oui"),
+        Fact(Qs9="non"),
+        Fact(Qs10="non"),
+        Fact(Qs11="non"),
+        Fact(Qs12="non"),
+        Fact(Qs13="non"),
+        Fact(Qs14="non"),
+        Fact(Qs15="non"),
+        Fact(Qs16="non"),
+        Fact(Qs17="non"),
     )
     def disease_2(self):
-        self.declare(Fact(disease="Arthritis"))
+        self.declare(Fact(disease="Ibrahim"))
 
     @Rule(
-        Fact(action="find_disease"),
-        Fact(headache="no"),
-        Fact(back_pain="no"),
-        Fact(chest_pain="high"),
-        Fact(cough="low"),
-        Fact(fainting="no"),
-        Fact(sore_throat="no"),
-        Fact(fatigue="no"),
-        Fact(restlessness="no"),
-        Fact(low_body_temp="no"),
-        Fact(fever="high"),
-        Fact(sunken_eyes="no"),
-        Fact(nausea="no"),
-        Fact(blurred_vision="no"),
+   Fact(action="trouver_prophete"),
+        Fact(Qs1="non"),
+        Fact(Qs2="non"),
+        Fact(Qs3="non"),
+        Fact(Qs4="non"),
+        Fact(Qs5="non"),
+        Fact(Qs6="non"),
+        Fact(Qs7="non"),
+        Fact(Qs8="non"),
+        Fact(Qs9="oui"),
+        Fact(Qs10="oui"),
+        Fact(Qs11="oui"),
+        Fact(Qs12="non"),
+        Fact(Qs13="non"),
+        Fact(Qs14="non"),
+        Fact(Qs15="non"),
+        Fact(Qs16="non"),
+        Fact(Qs17="non"),
     )
     def disease_3(self):
-        self.declare(Fact(disease="Tuberculosis"))
+        self.declare(Fact(disease="Youssef"))
 
     @Rule(
-        Fact(action="find_disease"),
-        Fact(headache="no"),
-        Fact(back_pain="no"),
-        Fact(chest_pain="high"),
-        Fact(cough="high"),
-        Fact(fainting="no"),
-        Fact(sore_throat="no"),
-        Fact(fatigue="no"),
-        Fact(restlessness="low"),
-        Fact(low_body_temp="no"),
-        Fact(fever="no"),
-        Fact(sunken_eyes="no"),
-        Fact(nausea="no"),
-        Fact(blurred_vision="no"),
+        Fact(action="trouver_prophete"),
+        Fact(Qs1="oui"),
+        Fact(Qs2="non"),
+        Fact(Qs3="oui"),
+        Fact(Qs4="oui"),
+        Fact(Qs5="non"),
+        Fact(Qs6="non"),
+        Fact(Qs7="non"),
+        Fact(Qs8="non"),
+        Fact(Qs9="oui"),
+        Fact(Qs10="non"),
+        Fact(Qs11="non"),
+        Fact(Qs12="oui"),
+        Fact(Qs13="oui"),
+        Fact(Qs14="non"),
+        Fact(Qs15="non"),
+        Fact(Qs16="non"),
+        Fact(Qs17="non"),
     )
     def disease_4(self):
-        self.declare(Fact(disease="Asthma"))
+        self.declare(Fact(disease="Moussa"))
 
     @Rule(
-        Fact(action="find_disease"),
-        Fact(headache="low"),
-        Fact(back_pain="no"),
-        Fact(chest_pain="no"),
-        Fact(cough="high"),
-        Fact(fainting="no"),
-        Fact(sore_throat="high"),
-        Fact(fatigue="no"),
-        Fact(restlessness="no"),
-        Fact(low_body_temp="no"),
-        Fact(fever="low"),
-        Fact(sunken_eyes="no"),
-        Fact(nausea="no"),
-        Fact(blurred_vision="no"),
+        Fact(action="trouver_prophete"),
+        Fact(Qs1="non"),
+        Fact(Qs2="non"),
+        Fact(Qs3="oui"),
+        Fact(Qs4="non"),
+        Fact(Qs5="non"),
+        Fact(Qs6="non"),
+        Fact(Qs7="non"),
+        Fact(Qs8="non"),
+        Fact(Qs9="non"),
+        Fact(Qs10="non"),
+        Fact(Qs11="non"),
+        Fact(Qs12="non"),
+        Fact(Qs13="non"),
+        Fact(Qs14="oui"),
+        Fact(Qs15="oui"),
+        Fact(Qs16="non"),
+        Fact(Qs17="non"),
     )
     def disease_5(self):
-        self.declare(Fact(disease="Sinusitis"))
+        self.declare(Fact(disease="Younus"))
 
     @Rule(
-        Fact(action="find_disease"),
-        Fact(headache="no"),
-        Fact(back_pain="no"),
-        Fact(chest_pain="no"),
-        Fact(cough="no"),
-        Fact(fainting="no"),
-        Fact(sore_throat="no"),
-        Fact(fatigue="low"),
-        Fact(restlessness="no"),
-        Fact(low_body_temp="no"),
-        Fact(fever="no"),
-        Fact(sunken_eyes="no"),
-        Fact(nausea="no"),
-        Fact(blurred_vision="no"),
+        Fact(action="trouver_prophete"),
+        Fact(Qs1="non"),
+        Fact(Qs2="non"),
+        Fact(Qs3="non"),
+        Fact(Qs4="oui"),
+        Fact(Qs5="non"),
+        Fact(Qs6="oui"),
+        Fact(Qs7="oui"),
+        Fact(Qs8="non"),
+        Fact(Qs9="non"),
+        Fact(Qs10="non"),
+        Fact(Qs11="non"),
+        Fact(Qs12="non"),
+        Fact(Qs13="non"),
+        Fact(Qs14="non"),
+        Fact(Qs15="non"),
+        Fact(Qs16="oui"),
+        Fact(Qs17="oui"),
     )
     def disease_6(self):
-        self.declare(Fact(disease="Epilepsy"))
+        self.declare(Fact(disease="Mohamed"))
 
-    @Rule(
-        Fact(action="find_disease"),
-        Fact(headache="no"),
-        Fact(back_pain="no"),
-        Fact(chest_pain="high"),
-        Fact(cough="no"),
-        Fact(fainting="no"),
-        Fact(sore_throat="no"),
-        Fact(fatigue="no"),
-        Fact(restlessness="no"),
-        Fact(low_body_temp="no"),
-        Fact(fever="no"),
-        Fact(sunken_eyes="no"),
-        Fact(nausea="high"),
-        Fact(blurred_vision="no"),
-    )
-    def disease_7(self):
-        self.declare(Fact(disease="Heart Disease"))
+    # @Rule(
+    #     Fact(action="trouver_prophete"),
+    #     Fact(Qs1="no"),
+    #     Fact(Qs2="no"),
+    #     Fact(Qs3="high"),
+    #     Fact(Qs4="no"),
+    #     Fact(Qs5="no"),
+    #     Fact(Qs10="no"),
+    #     Fact(Qs6="no"),
+    #     Fact(Qs9="no"),
+    #     Fact(Qs8="no"),
+    #     Fact(Qs11="no"),
+    #     Fact(Qs7="no"),
+    #     Fact(Qs12="high"),
+    #     Fact(Qs13="no"),
+    # )
+    # def disease_7(self):
+    #     self.declare(Fact(disease="Heart Disease"))
 
-    @Rule(
-        Fact(action="find_disease"),
-        Fact(headache="no"),
-        Fact(back_pain="no"),
-        Fact(chest_pain="no"),
-        Fact(cough="no"),
-        Fact(fainting="no"),
-        Fact(sore_throat="no"),
-        Fact(fatigue="high"),
-        Fact(restlessness="no"),
-        Fact(low_body_temp="no"),
-        Fact(fever="no"),
-        Fact(sunken_eyes="no"),
-        Fact(nausea="low"),
-        Fact(blurred_vision="low"),
-    )
-    def disease_8(self):
-        self.declare(Fact(disease="Diabetes"))
+    # @Rule(
+    #     Fact(action="trouver_prophete"),
+    #     Fact(Qs1="no"),
+    #     Fact(Qs2="no"),
+    #     Fact(Qs3="no"),
+    #     Fact(Qs4="no"),
+    #     Fact(Qs5="no"),
+    #     Fact(Qs10="no"),
+    #     Fact(Qs6="high"),
+    #     Fact(Qs9="no"),
+    #     Fact(Qs8="no"),
+    #     Fact(Qs11="no"),
+    #     Fact(Qs7="no"),
+    #     Fact(Qs12="low"),
+    #     Fact(Qs13="low"),
+    # )
+    # def disease_8(self):
+    #     self.declare(Fact(disease="Diabetes"))
 
-    @Rule(
-        Fact(action="find_disease"),
-        Fact(headache="low"),
-        Fact(back_pain="no"),
-        Fact(chest_pain="no"),
-        Fact(cough="no"),
-        Fact(fainting="no"),
-        Fact(sore_throat="no"),
-        Fact(fatigue="no"),
-        Fact(restlessness="no"),
-        Fact(low_body_temp="no"),
-        Fact(fever="no"),
-        Fact(sunken_eyes="no"),
-        Fact(nausea="high"),
-        Fact(blurred_vision="low"),
-    )
-    def disease_9(self):
-        self.declare(Fact(disease="Glaucoma"))
+    # @Rule(
+    #     Fact(action="trouver_prophete"),
+    #     Fact(Qs1="low"),
+    #     Fact(Qs2="no"),
+    #     Fact(Qs3="no"),
+    #     Fact(Qs4="no"),
+    #     Fact(Qs5="no"),
+    #     Fact(Qs10="no"),
+    #     Fact(Qs6="no"),
+    #     Fact(Qs9="no"),
+    #     Fact(Qs8="no"),
+    #     Fact(Qs11="no"),
+    #     Fact(Qs7="no"),
+    #     Fact(Qs12="high"),
+    #     Fact(Qs13="low"),
+    # )
+    # def disease_9(self):
+    #     self.declare(Fact(disease="Glaucoma"))
 
-    @Rule(
-        Fact(action="find_disease"),
-        Fact(headache="no"),
-        Fact(back_pain="no"),
-        Fact(chest_pain="no"),
-        Fact(cough="no"),
-        Fact(fainting="no"),
-        Fact(sore_throat="no"),
-        Fact(fatigue="high"),
-        Fact(restlessness="no"),
-        Fact(low_body_temp="no"),
-        Fact(fever="no"),
-        Fact(sunken_eyes="no"),
-        Fact(nausea="low"),
-        Fact(blurred_vision="no"),
-    )
-    def disease_10(self):
-        self.declare(Fact(disease="Hyperthyroidism"))
+    # @Rule(
+    #     Fact(action="trouver_prophete"),
+    #     Fact(Qs1="no"),
+    #     Fact(Qs2="no"),
+    #     Fact(Qs3="no"),
+    #     Fact(Qs4="no"),
+    #     Fact(Qs5="no"),
+    #     Fact(Qs10="no"),
+    #     Fact(Qs6="high"),
+    #     Fact(Qs9="no"),
+    #     Fact(Qs8="no"),
+    #     Fact(Qs11="no"),
+    #     Fact(Qs7="no"),
+    #     Fact(Qs12="low"),
+    #     Fact(Qs13="no"),
+    # )
+    # def disease_10(self):
+    #     self.declare(Fact(disease="Hyperthyroidism"))
 
-    @Rule(
-        Fact(action="find_disease"),
-        Fact(headache="high"),
-        Fact(back_pain="no"),
-        Fact(chest_pain="no"),
-        Fact(cough="no"),
-        Fact(fainting="no"),
-        Fact(sore_throat="no"),
-        Fact(fatigue="no"),
-        Fact(restlessness="no"),
-        Fact(low_body_temp="no"),
-        Fact(fever="high"),
-        Fact(sunken_eyes="no"),
-        Fact(nausea="high"),
-        Fact(blurred_vision="no"),
-    )
-    def disease_11(self):
-        self.declare(Fact(disease="Heat Stroke"))
+    # @Rule(
+    #     Fact(action="trouver_prophete"),
+    #     Fact(Qs1="high"),
+    #     Fact(Qs2="no"),
+    #     Fact(Qs3="no"),
+    #     Fact(Qs4="no"),
+    #     Fact(Qs5="no"),
+    #     Fact(Qs10="no"),
+    #     Fact(Qs6="no"),
+    #     Fact(Qs9="no"),
+    #     Fact(Qs8="no"),
+    #     Fact(Qs11="high"),
+    #     Fact(Qs7="no"),
+    #     Fact(Qs12="high"),
+    #     Fact(Qs13="no"),
+    # )
+    # def disease_11(self):
+    #     self.declare(Fact(disease="Heat Stroke"))
 
-    @Rule(
-        Fact(action="find_disease"),
-        Fact(headache="no"),
-        Fact(back_pain="no"),
-        Fact(chest_pain="no"),
-        Fact(cough="no"),
-        Fact(fainting="yes"),
-        Fact(sore_throat="no"),
-        Fact(fatigue="no"),
-        Fact(restlessness="no"),
-        Fact(low_body_temp="high"),
-        Fact(fever="no"),
-        Fact(sunken_eyes="no"),
-        Fact(nausea="no"),
-        Fact(blurred_vision="no"),
-    )
-    def disease_12(self):
-        self.declare(Fact(disease="Hypothermia"))
+    # @Rule(
+    #     Fact(action="trouver_prophete"),
+    #     Fact(Qs1="no"),
+    #     Fact(Qs2="no"),
+    #     Fact(Qs3="no"),
+    #     Fact(Qs4="no"),
+    #     Fact(Qs5="yes"),
+    #     Fact(Qs10="no"),
+    #     Fact(Qs6="no"),
+    #     Fact(Qs9="no"),
+    #     Fact(Qs8="high"),
+    #     Fact(Qs11="no"),
+    #     Fact(Qs7="no"),
+    #     Fact(Qs12="no"),
+    #     Fact(Qs13="no"),
+    # )
+    # def disease_12(self):
+    #     self.declare(Fact(disease="Hypothermia"))
     
-    @Rule(
-        Fact(action="find_disease"),
-        Fact(headache="high"),
-        Fact(back_pain="no"),
-        Fact(chest_pain="high"),
-        Fact(cough="high"),
-        Fact(fainting="no"),
-        Fact(sore_throat="high"),
-        Fact(fatigue="high"),
-        Fact(restlessness="no"),
-        Fact(low_body_temp="no"),
-        Fact(fever="high"),
-        Fact(sunken_eyes="no"),
-        Fact(nausea="no"),
-        Fact(blurred_vision="no"),
-    )
-    def disease_13(self):
-        self.declare(Fact(disease="Coronavirus"))
+    # @Rule(
+    #     Fact(action="trouver_prophete"),
+    #     Fact(Qs1="high"),
+    #     Fact(Qs2="no"),
+    #     Fact(Qs3="high"),
+    #     Fact(Qs4="high"),
+    #     Fact(Qs5="no"),
+    #     Fact(Qs10="high"),
+    #     Fact(Qs6="high"),
+    #     Fact(Qs9="no"),
+    #     Fact(Qs8="no"),
+    #     Fact(Qs11="high"),
+    #     Fact(Qs7="no"),
+    #     Fact(Qs12="no"),
+    #     Fact(Qs13="no"),
+    # )
+    # def disease_13(self):
+    #     self.declare(Fact(disease="Coronavirus"))
 
     #when the user's input doesn't match any disease in the knowledge base
-    @Rule(Fact(action="find_disease"), Fact(disease=MATCH.disease), salience=-998)
+    @Rule(Fact(action="trouver_prophete"), Fact(disease=MATCH.disease), salience=-998)
     def disease(self, disease):
-        print("")
+        print("tetetetetetetetet")
         id_disease = disease
         disease_details = self.get_details(id_disease)
         treatments = self.get_treatments(id_disease)
@@ -357,54 +400,64 @@ class Greetings(KnowledgeEngine):
         print(treatments + "\n")
 
     @Rule(
-        Fact(action="find_disease"),
-        Fact(headache=MATCH.headache),
-        Fact(back_pain=MATCH.back_pain),
-        Fact(chest_pain=MATCH.chest_pain),
-        Fact(cough=MATCH.cough),
-        Fact(fainting=MATCH.fainting),
-        Fact(sore_throat=MATCH.sore_throat),
-        Fact(fatigue=MATCH.fatigue),
-        Fact(low_body_temp=MATCH.low_body_temp),
-        Fact(restlessness=MATCH.restlessness),
-        Fact(fever=MATCH.fever),
-        Fact(sunken_eyes=MATCH.sunken_eyes),
-        Fact(nausea=MATCH.nausea),
-        Fact(blurred_vision=MATCH.blurred_vision),
+        Fact(action="trouver_prophete"),
+        Fact(Qs1=MATCH.Qs1),
+        Fact(Qs2=MATCH.Qs2),
+        Fact(Qs3=MATCH.Qs3),
+        Fact(Qs4=MATCH.Qs4),
+        Fact(Qs5=MATCH.Qs5),
+        Fact(Qs6=MATCH.Qs6),
+        Fact(Qs7=MATCH.Qs7),
+        Fact(Qs8=MATCH.Qs8),
+        Fact(Qs9=MATCH.Qs9),
+         Fact(Qs10=MATCH.Qs10),
+        Fact(Qs11=MATCH.Qs11),
+        Fact(Qs12=MATCH.Qs12),
+        Fact(Qs13=MATCH.Qs13),
+        Fact(Qs14=MATCH.Qs14),
+        Fact(Qs15=MATCH.Qs15),
+        Fact(Qs16=MATCH.Qs16),
+        Fact(Qs17=MATCH.Qs17),
         NOT(Fact(disease=MATCH.disease)),
         salience=-999
     )
     def not_matched(
         self,
-        headache,
-        back_pain,
-        chest_pain,
-        cough,
-        fainting,
-        sore_throat,
-        fatigue,
-        restlessness,
-        low_body_temp,
-        fever,
-        sunken_eyes,
-        nausea,
-        blurred_vision,
+        Qs1,
+        Qs2,
+        Qs3,
+        Qs4,
+        Qs5,
+        Qs6,
+        Qs8,
+        Qs9,
+        Qs10,
+        Qs11,
+        Qs12,
+        Qs13,
+        Qs14,
+        Qs15,
+        Qs16,
+        Qs17,
     ):
         print("\nThe bot did not find any diseases that match your exact symptoms.")
         lis = [
-            headache,
-            back_pain,
-            chest_pain,
-            cough,
-            fainting,
-            sore_throat,
-            fatigue,
-            restlessness,
-            low_body_temp,
-            fever,
-            sunken_eyes,
-            nausea,
-            blurred_vision,
+        Qs1,
+        Qs2,
+        Qs3,
+        Qs4,
+        Qs5,
+        Qs6,
+        Qs8,
+        Qs9,
+        Qs10,
+        Qs11,
+        Qs12,
+        Qs13,
+        Qs14,
+        Qs15,
+        Qs16,
+        Qs17,
         ]
         max_count = 0
         max_disease = ""
@@ -412,7 +465,7 @@ class Greetings(KnowledgeEngine):
             count = 0
             temp_list = eval(key)
             for j in range(0, len(lis)):
-                if temp_list[j] == lis[j] and (lis[j] == "high" or lis[j] == "low" or lis[j] == "yes"):
+                if temp_list[j] == lis[j] and lis[j] == "oui":
                     count = count + 1
             if count > max_count:
                 max_count = count
