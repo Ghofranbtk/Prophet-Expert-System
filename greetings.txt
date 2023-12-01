@@ -1,7 +1,5 @@
 from experta import *
 import tkinter as tk
-from PIL import Image, ImageTk
-
 class Greetings(KnowledgeEngine ):
 
     def __init__(self, symptom_map, if_not_matched, get_treatments, get_details):
@@ -10,142 +8,91 @@ class Greetings(KnowledgeEngine ):
         self.get_details = get_details
         self.get_treatments = get_treatments
         KnowledgeEngine.__init__(self)
-        self.root = tk.Tk()
-        self.text = tk.Text(self.root)
-        self.text.pack()
 
     # code giving instructions on how to use the Expert System
     @DefFacts()
     def _initial_action(self):
-        self.print_message("Dans ce programme on va deviner le prophète")
-        self.print_message("Répondez par oui ou non")
+        print("")
+        print("Dans ce programme on va deviner le prophète")
+        print("")
+        print("")
+        print("Répondez par oui ou non")
+        print("")
         yield Fact(action="trouver_prophete")
 
-    # def get_input(self, question, image_path):
-    def get_input(self, question):
-        new_window = tk.Toplevel(self.root)
-        new_window.geometry("600x600+100+100")  # Vous pouvez ajuster la taille de la fenêtre ici
-        new_window.configure(background='black')
-
-
-    # Ajouter une image
-        # Path_image = tk.PhotoImage(file="./images/Qs3.gif")
-        # image_label = tk.Label(new_window, image=Path_image)
-        # image_label.image = Path_image  # Gardez une référence à l'image
-        # image_label.pack()
-        
-    # Ouvrir l'image avec Pillow
-        image = Image.open("./images/Qs3.gif")
-
-# Redimensionner l'image à la taille souhaitée
-        image = image.resize((300, 200))
-
-# Convertir l'image Pillow en PhotoImage Tkinter
-        Path_image = ImageTk.PhotoImage(image)
-
-# Utiliser l'image dans le label
-        image_label = tk.Label(new_window, image=Path_image)
-        image_label.image = Path_image  # Gardez une référence à l'image
-        image_label.pack()
-
-
-    # Ajouter une question
-        label = tk.Label(new_window, text=question, font=("Helvetica", 16), foreground='red', background='lightblue')
-        label.pack(expand=True, anchor='center')
-        # label.pack()
-
-    # Ajouter des boutons radio pour les réponses
-        self.user_input = tk.StringVar(value="non")
-        yes_button = tk.Radiobutton(new_window, text="نعم", variable=self.user_input, value="oui", font=("Helvetica", 14))
-        no_button = tk.Radiobutton(new_window, text="لا", variable=self.user_input, value="non", font=("Helvetica", 14))
-        yes_button.pack()
-        no_button.pack()
-
-    # Ajouter un bouton de soumission
-        button = tk.Button(new_window, text="Submit", command=new_window.quit, font=("Helvetica", 14))
-        button.pack()
-
-        new_window.mainloop()
-        answer = self.user_input.get()
-        new_window.destroy()
-
-        return answer
-
-    def print_message(self, message):
-        self.text.insert(tk.END, message + "\n")
 
     #taking various input from user
     
     @Rule(Fact(action="trouver_prophete"), NOT(Fact(Qs1=W())), salience=4)
     def symptom_0(self):
-        self.declare(Fact(Qs1=self.get_input("هل هذا الشخص مذكور في سورة البقرة؟")))
+        self.declare(Fact(Qs1=input("Est-ce-que cette personne est montionné dans sourate Al-Baqara ?")))
 
     @Rule(Fact(action="trouver_prophete"), NOT(Fact(Qs2=W())), salience=1)
     def symptom_1(self):
-        self.declare(Fact(Qs2=self.get_input("هل يعتبرأول رجل في القرآن؟")))
+        self.declare(Fact(Qs2=input("Est-ce que cette personne est considérée comme le premier homme selon le Coran ?")))
 
     @Rule(Fact(action="trouver_prophete"), NOT(Fact(Qs3=W())), salience=1)
     def symptom_2(self):
-        self.declare(Fact(Qs3=self.get_input("هل له علاقات بالبحر أو الماء؟")))
+        self.declare(Fact(Qs3=input("Est-ce-que cette personne a des liens avec la mer ou l'eau ?")))
 
     @Rule(Fact(action="trouver_prophete"), NOT(Fact(Qs4=W())), salience=3)
     def symptom_3(self):
-        self.declare(Fact(Qs4=self.get_input("فهل يعتبر من الأنبياء الخمسة الكبار في الإسلام؟")))
+        self.declare(Fact(Qs4=input("Est-ce que cette personne est considérée comme l un des cinq grands prophètes dans l Islam ?")))
 
     @Rule(Fact(action="trouver_prophete"), NOT(Fact(Qs5=W())), salience=1)
     def symptom_4(self):
-        self.declare(Fact(Qs5=self.get_input("هل بنى فلكاً لينقذ عائلته وحيواناته من الطوفان؟")))
+        self.declare(Fact(Qs5=input("Est-ce que cette personne a construit une arche pour sauver sa famille et les animaux du déluge ?")))
 
     @Rule(Fact(action="trouver_prophete"), NOT(Fact(Qs6=W())), salience=1)
     def symptom_5(self):
-        self.declare(Fact(Qs6=self.get_input("هل هذا الشخص له علاقة بمكة؟ ")))
+        self.declare(Fact(Qs6=input("Est-ce-que cette personne a des liens avec Makka ? ")))
 
     @Rule(Fact(action="trouver_prophete"), NOT(Fact(Qs7=W())), salience=1)
     def symptom_6(self):
-        self.declare(Fact(Qs7=self.get_input("هل له روابط بفلسطين حسب النصوص الدينية؟")))
+        self.declare(Fact(Qs7=input("Est ce que cette personne a des liens avec la Palestine selon les textes religieux ?")))
 
     @Rule(Fact(action="trouver_prophete"), NOT(Fact(Qs8=W())), salience=1)
     def symptom_7(self):
-        self.declare(Fact(Qs8=self.get_input("هل لهذا الشخص علاقة ببناء الكعبة في مكة؟")))
+        self.declare(Fact(Qs8=input("Est-ce que cette personne a un lien avec la construction de la Kaaba à La Mecque ?")))
 
     @Rule(Fact(action="trouver_prophete"), NOT(Fact(Qs9=W())), salience=1)
     def symptom_8(self):
-        self.declare(Fact(Qs9=self.get_input("هل له روابط بمصر حسب النصوص الدينية؟")))
+        self.declare(Fact(Qs9=input("Est-ce-que cette personne a des liens avec l'Egipte selon les textes religieux ?")))
 
     @Rule(Fact(action="trouver_prophete"), NOT(Fact(Qs10=W())), salience=1)
     def symptom_9(self):
-        self.declare(Fact(Qs10=self.get_input("هل يرتبط هذا الشخص بقصة حلم البقرات السبع السمان والسبع البقرات العجاف في القرآن؟")))
+        self.declare(Fact(Qs10=input("Est-ce que cette personne est associée à l histoire du rêve des sept vaches grasses et sept vaches maigres dans le Coran ?")))
 
     @Rule(Fact(action="trouver_prophete"), NOT(Fact(Qs11=W())), salience=1)
     def symptom_10(self):
-        self.declare(Fact(Qs11=self.get_input("هل أصبح هذا الشخص مستشارًا مهمًا لملك مصر؟")))
+        self.declare(Fact(Qs11=input("Est-ce que cette personne est devenue un conseiller important du roi d Égypte ?")))
 
     @Rule(Fact(action="trouver_prophete"), NOT(Fact(Qs12=W())), salience=1)
     def symptom_11(self):
-        self.declare(Fact(Qs12=self.get_input("هل له علاقة بقصة العصا التي تحولت إلى ثعبان ؟")))
+        self.declare(Fact(Qs12=input("Est-ce que cette personne a un lien avec l histoire du bâton qui se transforme en serpent dans le Coran ?")))
 
     @Rule(Fact(action="trouver_prophete"), NOT(Fact(Qs13=W())), salience=1)
     def symptom_12(self):
-        self.declare(Fact(Qs13=self.get_input("هل تم العثور عليه في سلة طافية على النيل عندما كان طفلا؟")))
+        self.declare(Fact(Qs13=input("Est-ce que cette personne a été trouvée dans un panier flottant sur le Nil dans son enfance ?")))
 
     @Rule(Fact(action="trouver_prophete"), NOT(Fact(Qs14=W())), salience=1)
     def symptom_13(self):
-        self.declare(Fact(Qs14=self.get_input("هل قضى  ثلاثة أيام وثلاث ليال في بطن الحوت الكبير حسب القرآن؟")))
+        self.declare(Fact(Qs14=input("Est-ce que cette personne a passé trois jours et trois nuits dans le ventre d un grand poisson selon le Coran ?")))
     
     @Rule(Fact(action="trouver_prophete"), NOT(Fact(Qs15=W())), salience=1)
     def symptom_14(self):
-        self.declare(Fact(Qs15=self.get_input("هل هذا الشخص قادر على تحديد هوية يونان ؟")))
+        self.declare(Fact(Qs15=input("Est-ce que cette personne est souvent identifiée à Jonas dans la tradition biblique ?")))
     @Rule(Fact(action="trouver_prophete"), NOT(Fact(Qs16=W())), salience=1)
     def symptom_15(self):
-        self.declare(Fact(Qs16=self.get_input("هل هو آخر رسول بحسب القرآن؟")))
+        self.declare(Fact(Qs16=input("Est-ce que cette personne est le dernier messager selon le Coran ?")))
 
     @Rule(Fact(action="trouver_prophete"), NOT(Fact(Qs17=W())), salience=1)
     def symptom_16(self):
-        self.declare(Fact(Qs17=self.get_input("فهل هو مؤسس الإسلام؟")))
+        self.declare(Fact(Qs17=input("Est-ce que cette personne est le fondateur de l islam ?")))
 
-    #different rules checking for each prophet match
+    #different rules checking for each disease match
     
-     
+    
     
     
     
@@ -169,8 +116,8 @@ class Greetings(KnowledgeEngine ):
         Fact(Qs16="non"),
         Fact(Qs17="non"),
     )
-    def prophet_0(self):
-        self.declare(Fact(prophet="Adam"))
+    def disease_0(self):
+        self.declare(Fact(disease="Adam"))
 
     @Rule(
         Fact(action="trouver_prophete"),
@@ -192,8 +139,8 @@ class Greetings(KnowledgeEngine ):
         Fact(Qs16="non"),
         Fact(Qs17="non"),
     )
-    def prophet_1(self):
-        self.declare(Fact(prophet="Nouh"))
+    def disease_1(self):
+        self.declare(Fact(disease="Nouh"))
 
     @Rule(
         Fact(action="trouver_prophete"),
@@ -215,8 +162,8 @@ class Greetings(KnowledgeEngine ):
         Fact(Qs16="non"),
         Fact(Qs17="non"),
     )
-    def prophet_2(self):
-        self.declare(Fact(prophet="Ibrahim"))
+    def disease_2(self):
+        self.declare(Fact(disease="Ibrahim"))
 
     @Rule(
    Fact(action="trouver_prophete"),
@@ -238,8 +185,8 @@ class Greetings(KnowledgeEngine ):
         Fact(Qs16="non"),
         Fact(Qs17="non"),
     )
-    def prophet_3(self):
-        self.declare(Fact(prophet="Youssef"))
+    def disease_3(self):
+        self.declare(Fact(disease="Youssef"))
 
     @Rule(
         Fact(action="trouver_prophete"),
@@ -261,8 +208,8 @@ class Greetings(KnowledgeEngine ):
         Fact(Qs16="non"),
         Fact(Qs17="non"),
     )
-    def prophet_4(self):
-        self.declare(Fact(prophet="Moussa"))
+    def disease_4(self):
+        self.declare(Fact(disease="Moussa"))
 
     @Rule(
         Fact(action="trouver_prophete"),
@@ -284,8 +231,8 @@ class Greetings(KnowledgeEngine ):
         Fact(Qs16="non"),
         Fact(Qs17="non"),
     )
-    def prophet_5(self):
-        self.declare(Fact(prophet="Younus"))
+    def disease_5(self):
+        self.declare(Fact(disease="Younus"))
 
     @Rule(
         Fact(action="trouver_prophete"),
@@ -307,24 +254,24 @@ class Greetings(KnowledgeEngine ):
         Fact(Qs16="oui"),
         Fact(Qs17="oui"),
     )
-    def prophet_6(self):
-        self.declare(Fact(prophet="Mohamed"))
+    def disease_6(self):
+        self.declare(Fact(disease="Mohamed"))
 
-    #when the user's input doesn't match any prophet in the knowledge base
-    @Rule(Fact(action="trouver_prophete"), Fact(prophet=MATCH.prophet), salience=-998)
-    def prophet(self, prophet):
+    #when the user's input doesn't match any disease in the knowledge base
+    @Rule(Fact(action="trouver_prophete"), Fact(disease=MATCH.disease), salience=-998)
+    def disease(self, disease):
        
-        id_prophet = prophet
-        prophet_details = self.get_details(id_prophet)
-        treatments = self.get_treatments(id_prophet)
-        self.print_message("")
-        self.print_message("Your symptoms match %s\n" % (id_prophet))
-        self.print_message("A short description of the prophet is given below :\n")
-        self.print_message(prophet_details + "\n")
-        self.print_message(
+        id_disease = disease
+        disease_details = self.get_details(id_disease)
+        treatments = self.get_treatments(id_disease)
+        print("")
+        print("Your symptoms match %s\n" % (id_disease))
+        print("A short description of the disease is given below :\n")
+        print(disease_details + "\n")
+        print(
             "The common medications and procedures suggested by other real doctors are: \n"
         )
-        self.print_message(treatments + "\n")
+        print(treatments + "\n")
 
     @Rule(
         Fact(action="trouver_prophete"),
@@ -345,7 +292,7 @@ class Greetings(KnowledgeEngine ):
         Fact(Qs15=MATCH.Qs15),
         Fact(Qs16=MATCH.Qs16),
         Fact(Qs17=MATCH.Qs17),
-        NOT(Fact(prophet=MATCH.prophet)),
+        NOT(Fact(disease=MATCH.disease)),
         salience=-999
     )
     def not_matched(
@@ -367,7 +314,7 @@ class Greetings(KnowledgeEngine ):
         Qs16,
         Qs17,
     ):
-        self.print_message("\nThe bot did not find any prophets that match your exact symptoms.")
+        print("\nThe bot did not find any diseases that match your exact symptoms.")
         lis = [
         Qs1,
         Qs2,
@@ -387,7 +334,7 @@ class Greetings(KnowledgeEngine ):
         Qs17,
         ]
         max_count = 0
-        max_prophet = ""
+        max_disease = ""
         for key, val in self.symptom_map.items():
             count = 0
             temp_list = eval(key)
@@ -396,6 +343,6 @@ class Greetings(KnowledgeEngine ):
                     count = count + 1
             if count > max_count:
                 max_count = count
-                max_prophet = val
-        if max_prophet != "":
-            self.if_not_matched(max_prophet)
+                max_disease = val
+        if max_disease != "":
+            self.if_not_matched(max_disease)
